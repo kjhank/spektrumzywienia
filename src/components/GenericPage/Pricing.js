@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faEuroSign, faStopwatch,
+  faStopwatch, faWallet,
 } from '@fortawesome/pro-light-svg-icons';
 
 import { Container } from '@components';
@@ -27,7 +27,7 @@ export const Pricing = ({ prices }) => (
             )}
             {price.price && (
               <FooterItem>
-                <FontAwesomeIcon icon={faEuroSign} />
+                <FontAwesomeIcon icon={faWallet} />
                 {price.price}
               </FooterItem>
             )}
