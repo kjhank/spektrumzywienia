@@ -1,26 +1,83 @@
-import React from 'react';
-import styled from 'styled-components';
-import { rgba } from 'polished';
+import React, {
+  createRef, useEffect, useState,
+} from 'react';
+import PropTypes from 'prop-types';
 
 import { Container } from '@components';
+import {
+  Header, HomeLink, Link, LinksList, Logo, Navigation, SingleItem,
+} from './FixedHeader.styled';
+import { ContactBar } from './ContactBar';
+import { menu } from './static';
 
-const StyledHeader = styled.header`
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 2;
-  height: 115px;
-  box-shadow: 0 0.5em 1em ${rgba('#333', 0.25)};
-  background-color: #fff;
-`;
+export const FixedHeader = ({
+  data, logo, path,
+}) => {
+  const [
+    isPageScrolled,
+    setPageScrolled,
+  ] = useState(false);
 
-const FixedHeader = () => (
-  <StyledHeader>
-    <Container>
-      This is a fixed header.
-    </Container>
-  </StyledHeader>
-);
+  const [
+    isNavOpen,
+    setNavOpen,
+  ] = useState(false);
 
-export default FixedHeader;
+  const headerRef = createRef();
+
+  useEffect(() => {
+    let headerHeight;
+
+    const scrollHandler = () => {
+      const { scrollY } = window;
+
+      setPageScrolled(scrollY > headerHeight);
+    };
+
+    if (headerRef?.current) {
+      headerHeight = headerRef?.current?.getBoundingClientRect().height;
+
+      document.addEventListener('scroll', scrollHandler);
+    }
+
+    return () => document.removeEventListener('scroll', scrollHandler);
+  }, []);
+
+  useEffect(() => {
+    setNavOpen(false);
+  }, [path]);
+
+  return (
+    <Header
+      isScrolled={isPageScrolled}
+      ref={headerRef}
+    >
+      <Container>
+        <Navigation isOpen={isNavOpen}>
+          <HomeLink
+            title="przejdź do strony głównej"
+            to="/"
+          >
+            <Logo image={logo} />
+          </HomeLink>
+          <LinksList>
+            {menu.map(link => (
+              <SingleItem key={link.to}>
+                <Link to={link.to}>
+                  {link.text}
+                </Link>
+              </SingleItem>
+            ))}
+          </LinksList>
+          <ContactBar data={data} />
+        </Navigation>
+      </Container>
+    </Header>
+  );
+};
+
+FixedHeader.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  logo: PropTypes.shape({}).isRequired,
+  path: PropTypes.string.isRequired,
+};

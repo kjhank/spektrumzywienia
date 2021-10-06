@@ -70,4 +70,6 @@ yarn-error.log
 
 # design directories etc.
 designs/
+design/
 tmp/
+.yarn/

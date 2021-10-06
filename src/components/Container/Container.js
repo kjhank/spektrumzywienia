@@ -2,23 +2,21 @@ import styled from 'styled-components';
 
 import { mediaQueries } from '@utils';
 
-const Container = styled.div`
+export const Container = styled.div`
   position: relative;
-  max-width: 1440px;
+  display: ${({ isCentered }) => (isCentered ? 'flex' : 'block')};
+  justify-content: center;
+  align-items: center;
+  width: 70vw;
+  max-width: 1536px;
   height: 100%;
   margin: 0 auto;
 
-  @media ${mediaQueries.mediumLarge} {
+  @media ${mediaQueries.xl} {
     max-width: 80vw;
   }
 
-  @media ${mediaQueries.medium} {
-    max-width: 87vw;
-  }
-
-  @media ${mediaQueries.xsmall} {
+  @media ${mediaQueries.xs} {
     max-width: 90vw;
   }
 `;
-
-export default Container;

@@ -1,4 +1,7 @@
 module.exports = {
+  flags: {
+    THE_FLAG: false,
+  },
   plugins: [
     'gatsby-plugin-react-helmet',
     {
@@ -26,6 +29,7 @@ module.exports = {
         alias: {
           '@assets': 'src/assets',
           '@components': 'src/components',
+          '@genericPage': 'src/components/GenericPage',
           '@pages': 'src/pages',
           '@src': 'src',
           '@theme': 'src/theme',
