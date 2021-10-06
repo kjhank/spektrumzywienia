@@ -1,27 +1,31 @@
 {
   "extends": [
-    "stylelint-config-standard",
+    "stylelint-config-recommended",
     "stylelint-config-styled-components"
   ],
-  "processors": ["stylelint-processor-styled-components"],
+  "ignoreFiles": [],
+  "processors": [
+    "stylelint-processor-styled-components"
+  ],
   "plugins": [
     "stylelint-order"
   ],
   "rules": {
     "declaration-empty-line-before": "never",
+    "value-keyword-case": ["lower", { "ignoreKeywords": ["dummyValue"] }],
     "at-rule-no-unknown": [true, {
-      ignoreAtRules: ["function", "if", "mixin", "include", "each"]
+      "ignoreAtRules": ["function", "if", "mixin", "include", "each"]
     }],
     "order/properties-order": [
       {
-        properties: [
+        "properties": [
           "content",
           "counter-reset",
           "counter-increment"
         ]
       },
       {
-        properties: [
+        "properties": [
           "position",
           "top",
           "right",
@@ -33,7 +37,7 @@
         ]
       },
       {
-        properties: [
+        "properties": [
           "overflow",
           "overflow-x",
           "overflow-y",
@@ -49,7 +53,7 @@
         ]
       },
       {
-        properties: [
+        "properties": [
           "flex",
           "flex-grow",
           "flex-shrink",
@@ -65,7 +69,7 @@
         ]
       },
       {
-        properties: [
+        "properties": [
           "grid",
           "grid-template",
           "grid-template-rows",
@@ -87,7 +91,7 @@
         ]
       },
       {
-        properties: [
+        "properties": [
           "columns",
           "column-width",
           "column-count",
@@ -101,7 +105,7 @@
         ]
       },
       {
-        properties: [
+        "properties": [
           "width",
           "min-width",
           "max-width",
@@ -174,7 +178,7 @@
         ]
       },
       {
-        properties: [
+        "properties": [
           "list-style",
           "list-style-type",
           "list-style-position",
@@ -183,7 +187,7 @@
         ]
       },
       {
-        properties: [
+        "properties": [
           "writing-mode",
           "direction",
           "unicode-bidi",
@@ -235,7 +239,7 @@
         ]
       },
       {
-        properties: [
+        "properties": [
           "transition",
           "transition-property",
           "transition-duration",
@@ -256,7 +260,7 @@
         ]
       },
       {
-        properties: [
+        "properties": [
           "break-after",
           "break-before",
           "break-inside",
@@ -267,14 +271,14 @@
         ]
       },
       {
-        properties: [
+        "properties": [
           "user-select",
           "pointer-events",
           "cursor"
         ]
       },
       {
-        properties: [
+        "properties": [
           "vertical-align",
           "isolation",
           "table-layout",
@@ -286,7 +290,7 @@
           "object-position",
           "all"
         ]
-      },
+      }
     ]
   }
 }

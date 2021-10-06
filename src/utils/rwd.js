@@ -1,13 +1,15 @@
 /* eslint-disable sort-keys */
 
 export const breakpoints = {
-  xxl: 1440,
-  xl: 1280,
-  l: 1024,
+  huge: 1650,
+  xxl: 1450,
+  xl: 1300,
+  l: 1100,
   m: 920,
-  s: 768,
-  xs: 480,
-  xxs: 360,
+  s: 800,
+  xs: 680,
+  xxs: 400,
+  tiny: 360,
 };
 
 const mediaQueries = {

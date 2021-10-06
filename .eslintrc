@@ -6,6 +6,14 @@
   "env": {
     "browser": true
   },
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "requireConfigFile": false
+  },
+  "plugins": [
+    "@babel",
+    "react-hooks"
+  ],
   "rules": {
     "arrow-parens": [
       2,
@@ -101,7 +109,8 @@
     "react-hooks/exhaustive-deps": "warn",
     "react-hooks/rules-of-hooks": "error",
     "react/jsx-max-props-per-line": ["error", { "maximum": 1 }],
-    "react/jsx-fragments": ["error", "element"],
+    "react/jsx-fragments": ["error", "syntax"],
+    "react/jsx-sort-props": ["error", { "reservedFirst": false }],
     "sort-imports": [
       "error",
       {
@@ -124,8 +133,5 @@
         "natural": true
       }
     ]
-  },
-  "plugins": [
-    "react-hooks"
-  ]
+  }
 }
