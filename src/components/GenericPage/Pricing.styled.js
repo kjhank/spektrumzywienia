@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { queries } from '@utils/rwd';
+
 export const PricingList = styled.ul`
   display: flex;
   flex-direction: column;
@@ -7,9 +9,14 @@ export const PricingList = styled.ul`
   width: 70%;
   gap: 3em;
   margin-bottom: 5em;
+
+  @media ${queries.m} {
+    width: 100%;
+  }
 `;
 
 export const SingleService = styled.li`
+  width: 100%;
   border-bottom: 1px solid ${({ theme: { colors } }) => colors.border};
   padding-bottom: 2em;
 `;

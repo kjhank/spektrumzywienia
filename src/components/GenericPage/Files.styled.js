@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { queries } from '@utils/rwd';
 
 export const FilesList = styled.ul`
   display: flex;
@@ -7,9 +8,14 @@ export const FilesList = styled.ul`
   width: 70%;
   gap: 3em;
   margin-bottom: 5em;
+
+  @media ${queries.xs} {
+    width: 100%;
+  }
 `;
 
 export const SingleFile = styled.li`
+  width: 100%;
   border-bottom: 1px solid ${({ theme: { colors } }) => colors.border};
   padding-bottom: 2em;
 `;

@@ -8,6 +8,7 @@ const Text = styled.div`
     ${({
     color, theme,
   }) => theme.colors[color] || theme.colors.text};
+  font-style: ${({ variant }) => variant === 'lead' && 'italic'};
   font-weight:
     ${({
     theme, variant, weight,
@@ -43,7 +44,6 @@ const Text = styled.div`
 
   p {
     line-height: 1.3;
-    text-indent: 1em;
 
     + p {
       margin-top: 1em;
@@ -62,6 +62,7 @@ const Text = styled.div`
 
   h2,
   h3 {
+    margin-top: 1em;
     margin-bottom: 1em;
     font-weight: ${({ theme: { fonts: { weights } } }) => weights.semibold};
     font-family: ${({ theme: { fonts } }) => fonts.heading};
@@ -79,7 +80,12 @@ const Text = styled.div`
   ul,
   ol {
     margin: 1em 0;
+  }
 
+  ol {
+    > li {
+      list-style-position: inside;
+    }
   }
 
   ul {

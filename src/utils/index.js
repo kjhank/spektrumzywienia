@@ -1,7 +1,7 @@
 import GlobalStyle from './GlobalStyle';
 import {
-  mediaQueries,
   mfQueries,
+  queries,
 } from './rwd';
 import {
   isBrowser,
@@ -12,6 +12,6 @@ export {
   GlobalStyle,
   isBrowser,
   isMobile,
-  mediaQueries,
+  queries,
   mfQueries,
 };

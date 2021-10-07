@@ -6,6 +6,8 @@ import {
   Container, WPImage,
 } from '@components';
 
+import { queries } from '@utils/rwd';
+
 /* stylelint-disable no-descending-specificity */
 
 export const Hero = styled.section`
@@ -14,6 +16,10 @@ export const Hero = styled.section`
   height: 100vh;
   font-size: ${({ theme: { fonts: { sizes } } }) => sizes.xxlarge};
   font-family: ${({ theme: { fonts } }) => fonts.heading};
+
+  @media ${queries.xs} {
+    font-size: ${({ theme: { fonts: { sizes } } }) => sizes.xlarge};
+  }
 `;
 
 export const HeroContainer = styled(Container)`
@@ -46,11 +52,19 @@ export const HeroContainer = styled(Container)`
   h1 {
     font-size: ${({ theme: { fonts: { sizes } } }) => sizes.hero};
     font-family: ${({ theme: { fonts } }) => fonts.heading};
+
+    @media ${queries.xs} {
+      font-size: ${({ theme: { fonts: { sizes } } }) => sizes.huge};
+    }
   }
 
   h2 {
     font-size: ${({ theme: { fonts: { sizes } } }) => sizes.huge};
     font-family: ${({ theme: { fonts } }) => fonts.heading};
+
+    @media ${queries.xs} {
+      font-size: ${({ theme: { fonts: { sizes } } }) => sizes.xxlarge};
+    }
   }
 `;
 
@@ -75,14 +89,27 @@ export const TextImage = styled.section`
   ${({
     noGradient, theme,
   }) => !noGradient && theme.getSectionGradient()};
+
+  > div {
+    > a {
+      margin-top: 1em;
+    }
+  }
 `;
 
 export const TextImageContainer = styled(Container)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
   gap: 5em;
+
+  @media ${queries.m} {
+    flex-direction: column-reverse;
+  }
+
+  @media ${queries.xs} {
+    gap: 2em;
+  }
 `;
 
 export const TextWrapper = styled.div`
@@ -115,10 +142,15 @@ export const TextWrapper = styled.div`
     margin-bottom: 0.5em;
     font-family: ${({ theme: { fonts } }) => fonts.heading};
     line-height: 1.5;
+    text-align: center;
   }
 
   > p {
     line-height: 1.3;
+  }
+
+  @media ${queries.m} {
+    width: 100%;
   }
 `;
 
@@ -151,6 +183,10 @@ export const Image = styled(WPImage)`
   :hover {
     transform: scale(1.01);
   }
+
+  @media ${queries.xs} {
+    width: 50%;
+  }
 `;
 
 export const SectionLink = styled(Link)`
@@ -174,6 +210,12 @@ export const SectionLink = styled(Link)`
 
 export const TextSection = styled.section`
   ${({ theme }) => theme.getSectionGradient()};
+
+  > div > div {
+    @media ${queries.xxl} {
+      font-size: ${({ theme: { fonts: { sizes } } }) => sizes.xxlarge};
+    }
+  }
 `;
 
 export const BlogPostsSection = styled.section``;
@@ -184,6 +226,14 @@ export const PostsList = styled.ul`
   display: grid;
   grid-template-columns: repeat(${({ columns }) => columns || 2}, 1fr);
   gap: 2em;
+
+  @media ${queries.s} {
+    grid-template-columns: repeat(${({ columns }) => columns - 1 || 1}, 1fr);
+  }
+
+  @media ${queries.xs} {
+    grid-template-columns: repeat(${({ columns }) => columns - 2 || 1}, 1fr);
+  }
 `;
 
 export const SinglePost = styled.li`
@@ -234,7 +284,7 @@ export const PostLink = styled(Link)`
   height: 100%;
   font-size: ${({
     hasSmallerFont, theme: { fonts: { sizes } },
-  }) => (hasSmallerFont ? sizes.xxlarge : sizes.large)};
+  }) => (hasSmallerFont ? sizes.large : sizes.xxlarge)};
   text-align: center;
 
   :hover {
@@ -246,5 +296,11 @@ export const PostLink = styled(Link)`
       filter: contrast(125%);
       transform: scale(1.05);
     }
+  }
+
+  @media ${queries.m} {
+  font-size: ${({
+    hasSmallerFont, theme: { fonts: { sizes } },
+  }) => (hasSmallerFont ? sizes.medium : sizes.xlarge)};
   }
 `;
