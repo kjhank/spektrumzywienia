@@ -80,7 +80,6 @@ exports.createPages = async ({
 
     const global = {
       cover: acf.cover,
-      fullContext: page,
       isCoverBlurred: acf.is_cover_blurred,
       isCoverDarkened: acf.is_cover_darkened,
       isHeaderWhite: acf.is_white,
@@ -153,7 +152,13 @@ exports.createPages = async ({
     } = page;
 
     const context = {
-      options: options?.acf,
+      options: {
+        formFields: options.acf['contact-form'][0].post_content.split('[').map(item => item.split(']'))
+          .flat()
+          .filter(item => item.includes('* '))
+          .map(item => item.split('* ')[1]),
+        ...options?.acf,
+      },
       title: title?.rendered,
       ...getContext(page),
     };
@@ -171,7 +176,13 @@ exports.createPages = async ({
     const { slug } = post;
 
     const context = {
-      options: options?.acf,
+      options: {
+        formFields: options.acf['contact-form'][0].post_content.split('[').map(item => item.split(']'))
+          .flat()
+          .filter(item => item.includes('* '))
+          .map(item => item.split('* ')[1]),
+        ...options?.acf,
+      },
       ...getContext(post),
     };
 

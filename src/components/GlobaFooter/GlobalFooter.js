@@ -12,7 +12,7 @@ import {
 import { ContactForm } from './ContactForm';
 
 export const GlobalFooter = ({
-  data, noHeading, noMargin,
+  data, formFields, formId, noHeading, noMargin,
 }) => (
   <Wrapper noMargin={noMargin}>
     {!noHeading && (
@@ -36,7 +36,10 @@ export const GlobalFooter = ({
           src={data?.mapUrl}
           width="100%"
         />
-        <ContactForm />
+        <ContactForm
+          fields={formFields}
+          formId={formId}
+        />
       </Container>
       <GenericContainer>
         <About>
@@ -71,6 +74,8 @@ GlobalFooter.propTypes = {
     hours: PropTypes.string,
     mapUrl: PropTypes.string,
   }).isRequired,
+  formFields: PropTypes.arrayOf(PropTypes.string).isRequired,
+  formId: PropTypes.number.isRequired,
   noHeading: PropTypes.bool,
   noMargin: PropTypes.bool,
 };
