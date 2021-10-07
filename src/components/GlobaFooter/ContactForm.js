@@ -1,6 +1,7 @@
 import React, {
   createRef, useState,
 } from 'react';
+import PropTypes from 'prop-types';
 
 import {
   FieldWrapper, Form, Input, Label, LabelText, SubmitButton,
@@ -15,25 +16,24 @@ const fieldNames = {
 };
 /* eslint-enable sort-keys */
 
-export const ContactForm = () => {
+const { BACKEND_URL } = process.env;
+
+export const ContactForm = ({
+  fields, formId,
+}) => {
+  const FORM_URL = `${BACKEND_URL}/contact-form-7/v1/contact-forms/${formId}`;
   const formRef = createRef();
-  /* eslint-disable sort-keys */
   const [
     formData,
     setFormData,
-  ] = useState({
-    'your-name': '',
-    'your-email': '',
-    'your-phone': '',
-    'your-message': '',
-  });
-
-  /* eslint-enable sort-keys */
+  ] = useState(fields);
 
   const [
     buttonMessage,
     setButtonMessage,
   ] = useState('Wyślij wiadomość');
+
+  console.log(FORM_URL);
 
   const handleSubmit = event => {
     const { current: formElem } = formRef;
@@ -42,7 +42,7 @@ export const ContactForm = () => {
     event.preventDefault();
 
     if (isValid) {
-      console.log(formData);
+      // fetch()
       setButtonMessage('Wysłano wiadomość');
     } else {
       formElem.reportValidity();
@@ -105,6 +105,7 @@ export const ContactForm = () => {
   );
 };
 ContactForm.propTypes = {
-
+  fields: PropTypes.arrayOf(PropTypes.string).isRequired,
+  formId: PropTypes.number.isRequired,
 };
 

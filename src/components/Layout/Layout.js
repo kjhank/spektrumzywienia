@@ -2,7 +2,6 @@ import React, {
   useEffect, useState,
 } from 'react';
 import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
 import smoothscroll from 'smoothscroll-polyfill';
 import {
   faEnvelopeOpen, faLocation, faPhone,
@@ -18,18 +17,15 @@ import {
 } from '@components';
 
 import '../../../static/fonts/stylesheet.css';
+import { renderMetaData } from './helpers';
 
 const COOKIES_LS_KEY = 'cookies-agreed';
 
 const Layout = ({
-  children, pageContext, path,
+  children, location, pageContext, path,
 }) => {
-  const htmlAttributes = {
-    lang: 'pl',
-  };
-
   const {
-    options,
+    metadata, options,
   } = pageContext;
 
   const contactLinks = [
@@ -87,7 +83,10 @@ const Layout = ({
 
   return (
     <Theme>
-      <Helmet htmlAttributes={htmlAttributes} />
+      {renderMetaData(({
+        ...metadata,
+        canonicalUrl: location.href,
+      }))}
       <GlobalStyle shouldScroll={!isCookiesModalOpen} />
       <FixedHeader
         data={contactLinks}
@@ -97,6 +96,8 @@ const Layout = ({
       {children}
       <GlobalFooter
         data={footerData}
+        formFields={options.formFields}
+        formId={options['contact-form'][0].ID}
         noHeading={path === '/kontakt'}
         noMargin={path === '/kontakt'}
       />
@@ -110,7 +111,11 @@ Layout.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]).isRequired,
+  location: PropTypes.shape({
+    href: PropTypes.string,
+  }).isRequired,
   pageContext: PropTypes.shape({
+    metadata: PropTypes.shape({}),
     options: PropTypes.shape({
       about: PropTypes.shape({}),
       contact_data: PropTypes.shape({
@@ -123,6 +128,10 @@ Layout.propTypes = {
         phone: PropTypes.string,
         working_hours: PropTypes.string,
       }),
+      'contact-form': PropTypes.arrayOf(PropTypes.shape({
+        ID: PropTypes.number,
+      })),
+      formFields: PropTypes.arrayOf(PropTypes.string),
       logo: PropTypes.shape({}),
     }),
   }).isRequired,
