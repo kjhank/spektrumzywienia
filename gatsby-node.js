@@ -148,13 +148,11 @@ exports.createPages = async ({
 
   pages.forEach(page => {
     const {
-      content,
       slug,
       title,
     } = page;
 
     const context = {
-      content: content?.rendered,
       options: options?.acf,
       title: title?.rendered,
       ...getContext(page),
@@ -170,13 +168,9 @@ exports.createPages = async ({
   });
 
   posts.forEach(post => {
-    const {
-      content,
-      slug,
-    } = post;
+    const { slug } = post;
 
     const context = {
-      content: content?.rendered,
       options: options?.acf,
       ...getContext(post),
     };

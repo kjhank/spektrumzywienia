@@ -3,11 +3,16 @@ import styled from 'styled-components';
 import {
   Container, WPImage,
 } from '@components';
+import { queries } from '@utils/rwd';
 
 export const Main = styled.main`
   > section + section {
     margin-top: 5em;
-    padding: 2.5em;
+    padding: 2.5em 0;
+
+    @media ${queries.xs} {
+      margin-top: 2.5em
+    }
   }
 `;
 
@@ -28,6 +33,12 @@ export const Header = styled.header`
 
     > h1, > h2 {
       width: 100%;
+    }
+
+    @media ${queries.xs} {
+      > h1 {
+        font-size: ${({ theme: { fonts: { sizes } } }) => sizes.huge};
+      }
     }
   }
 `;
@@ -78,8 +89,11 @@ export const TextImageContainer = styled(Container)`
   flex-direction: ${({ direction }) => direction};
   justify-content: space-between;
   align-items: center;
-  width: 100%;
   gap: 5em;
+
+  @media ${queries.s} {
+    flex-direction: column-reverse;
+  }
 `;
 
 export const TextWrapper = styled.div`
@@ -96,6 +110,10 @@ export const TextWrapper = styled.div`
 
     return '50%';
   }};
+
+  @media ${queries.s} {
+    width: 100%
+  }
 `;
 
 export const ImageSection = styled.section``;
@@ -128,6 +146,10 @@ export const Image = styled(WPImage)`
 
   :hover {
     transform: scale(1.01);
+  }
+
+  @media ${queries.s} {
+    width: 100%
   }
 `;
 

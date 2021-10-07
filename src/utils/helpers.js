@@ -3,7 +3,7 @@ import sanitize from 'sanitize-html';
 import { faArrowRight } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { mediaQueries } from '@utils/rwd';
+import { queries } from '@utils/rwd';
 import {
   Hero,
   HeroContainer,
@@ -27,7 +27,7 @@ import { ImageSection } from '../components/GenericPage/GenericPage.styled';
 
 export const isBrowser = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
 
-export const isMobile = () => isBrowser && window.matchMedia(mediaQueries.xs).matches;
+export const isMobile = () => isBrowser && window.matchMedia(queries.xs).matches;
 
 export const renderHomePage = sections => sections.map(section => {
   const {
@@ -135,8 +135,6 @@ export const renderGenericPage = sections => sections.map(section => {
   const { type } = section;
   const key = JSON.stringify(section).slice(0, 123);
 
-  console.log(section);
-
   switch (type) {
     case 'textImage': {
       const {
@@ -152,6 +150,7 @@ export const renderGenericPage = sections => sections.map(section => {
       );
     }
 
+    case 'lead':
     case 'text': {
       const {
         no_gradient: noGradient, text,
@@ -165,8 +164,9 @@ export const renderGenericPage = sections => sections.map(section => {
           <Container>
             <Typography
               dangerouslySetInnerHTML={{ __html: sanitize(text) }}
-              size="xlarge"
-              weight="light"
+              size={type === 'lead' ? 'xxlarge' : 'xlarge'}
+              variant={type}
+              weight={type === 'lead' ? 'normal' : 'light'}
             />
           </Container>
         </GenericTextSection>

@@ -12,7 +12,7 @@ export const breakpoints = {
   tiny: 360,
 };
 
-const mediaQueries = {
+const queries = {
   landscape: '(orientation: landscape)',
   nonTouch: '(pointer: fine)',
   touch: '(hover: none) and (pointer: coarse)',
@@ -22,11 +22,11 @@ const mediaQueries = {
 /* eslint-enable sort-keys */
 
 const mfQueries = {
-  ...mediaQueries,
+  ...queries,
 };
 
 Object.keys(breakpoints).forEach(size => {
-  mediaQueries[size] = `(max-width: ${breakpoints[size]}px)`;
+  queries[size] = `(max-width: ${breakpoints[size]}px)`;
 });
 
 Object.keys(breakpoints).forEach(size => {
@@ -34,6 +34,6 @@ Object.keys(breakpoints).forEach(size => {
 });
 
 export {
-  mediaQueries,
+  queries,
   mfQueries,
 };

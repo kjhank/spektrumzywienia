@@ -1,11 +1,18 @@
 import styled from 'styled-components';
+
 import {
   Container as GenericContainer, WPImage,
 } from '@components';
 
+import { queries } from '@utils/rwd';
+
 export const Wrapper = styled.footer`
   margin-top: ${({ noMargin }) => (noMargin ? 0 : '5em')};
   padding-top: 2.5em;
+
+  @media ${queries.xs} {
+    margin-top: 0;
+  }
 `;
 
 export const DataWrapper = styled.section`
@@ -17,6 +24,12 @@ export const MapFrame = styled.iframe`
   top: 0;
   right: 51%;
   width: calc(50vw - 1%);
+
+  @media ${queries.xs} {
+    position: static;
+    width: 100%;
+    height: 50vw;
+  }
 `;
 
 export const Form = styled.form`
@@ -29,6 +42,11 @@ export const Form = styled.form`
   height: 100%;
   color: ${({ theme: { colors } }) => colors.main};
   font-family: ${({ theme: { fonts } }) => fonts.heading};
+
+  @media ${queries.xs} {
+    width: 100%;
+    margin-bottom: 2em;
+  }
 `;
 
 export const Label = styled.label`
@@ -102,6 +120,10 @@ export const FieldWrapper = styled.div`
       }
     }
   }
+
+  @media ${queries.xl} {
+    width: 100%;
+  }
 `;
 
 export const Container = styled(GenericContainer)`
@@ -109,6 +131,10 @@ export const Container = styled(GenericContainer)`
   justify-content: flex-end;
   align-items: flex-start;
   min-height: 400px;
+
+  @media ${queries.xs} {
+    flex-direction: column-reverse;
+  }
 `;
 
 export const Contact = styled.div`
@@ -122,6 +148,14 @@ export const About = styled.div`
   width: 50%;
   margin: auto;
   padding: 2em;
+
+  @media ${queries.xxl} {
+    width: 75%;
+  }
+
+  @media ${queries.xs} {
+    width: 100%;
+  }
 `;
 
 export const Avatar = styled(WPImage)`
@@ -133,5 +167,9 @@ export const Avatar = styled(WPImage)`
   > img {
     box-shadow: ${({ theme }) => theme.getShadow()};
     border-radius: 50%;
+  }
+
+  @media ${queries.xs} {
+    width: 50%;
   }
 `;

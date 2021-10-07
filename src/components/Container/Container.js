@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { mediaQueries } from '@utils';
+import { queries } from '@utils';
 
 export const Container = styled.div`
   position: relative;
@@ -12,11 +12,12 @@ export const Container = styled.div`
   height: 100%;
   margin: 0 auto;
 
-  @media ${mediaQueries.xl} {
+  @media ${queries.xl} {
+    width: 100%;
     max-width: 80vw;
   }
 
-  @media ${mediaQueries.xs} {
+  @media ${queries.xs} {
     max-width: 90vw;
   }
 `;

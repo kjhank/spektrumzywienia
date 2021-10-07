@@ -2,10 +2,14 @@ import React, {
   createRef, useEffect, useState,
 } from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faBars, faTimes,
+} from '@fortawesome/pro-light-svg-icons';
 
 import { Container } from '@components';
 import {
-  Header, HomeLink, Link, LinksList, Logo, Navigation, SingleItem,
+  Header, HomeLink, Link, LinksList, Logo, MenuToggle, Navigation, SingleItem,
 } from './FixedHeader.styled';
 import { ContactBar } from './ContactBar';
 import { menu } from './static';
@@ -53,13 +57,13 @@ export const FixedHeader = ({
       ref={headerRef}
     >
       <Container>
+        <HomeLink
+          title="przejdź do strony głównej"
+          to="/"
+        >
+          <Logo image={logo} />
+        </HomeLink>
         <Navigation isOpen={isNavOpen}>
-          <HomeLink
-            title="przejdź do strony głównej"
-            to="/"
-          >
-            <Logo image={logo} />
-          </HomeLink>
           <LinksList>
             {menu.map(link => (
               <SingleItem key={link.to}>
@@ -71,6 +75,19 @@ export const FixedHeader = ({
           </LinksList>
           <ContactBar data={data} />
         </Navigation>
+        <MenuToggle
+          isToggled={isNavOpen}
+          onClick={() => setNavOpen(previous => !previous)}
+        >
+          <FontAwesomeIcon
+            className="toggle-icon"
+            icon={faBars}
+          />
+          <FontAwesomeIcon
+            className="toggle-icon"
+            icon={faTimes}
+          />
+        </MenuToggle>
       </Container>
     </Header>
   );
