@@ -16,36 +16,54 @@ const fieldNames = {
 };
 /* eslint-enable sort-keys */
 
+const INITIAL_MESSAGE = 'Wyślij wiadomość';
 const { BACKEND_URL } = process.env;
 
 export const ContactForm = ({
   fields, formId,
 }) => {
-  const FORM_URL = `${BACKEND_URL}/contact-form-7/v1/contact-forms/${formId}`;
+  const FORM_URL = `${BACKEND_URL}/contact-form-7/v1/contact-forms/${formId}/feedback`;
   const formRef = createRef();
   const [
     formData,
     setFormData,
-  ] = useState(fields);
+  ] = useState(fields.reduce((acc, curr) => ({
+    ...acc,
+    [curr]: '',
+  }), {}));
 
   const [
     buttonMessage,
     setButtonMessage,
-  ] = useState('Wyślij wiadomość');
+  ] = useState(INITIAL_MESSAGE);
 
-  console.log(FORM_URL);
-
-  const handleSubmit = event => {
-    const { current: formElem } = formRef;
-    const isValid = formElem.checkValidity();
+  const handleSubmit = async event => {
+    const { current: formElement } = formRef;
+    const isValid = formElement.checkValidity();
 
     event.preventDefault();
 
     if (isValid) {
-      // fetch()
-      setButtonMessage('Wysłano wiadomość');
+      const messageBody = new FormData();
+
+      Object.keys(formData).forEach(key => messageBody.append(key, formData[key]));
+
+      const response = await fetch(FORM_URL, {
+        body: messageBody,
+        method: 'post',
+      });
+
+      const {
+        message, status,
+      } = await response.json();
+
+      if (status === 'mail_sent') {
+        setButtonMessage('Wysłano wiadomość');
+      } else {
+        setButtonMessage(message);
+      }
     } else {
-      formElem.reportValidity();
+      formElement.reportValidity();
     }
   };
 
@@ -98,7 +116,10 @@ export const ContactForm = ({
           />
         </FieldWrapper>
       ))}
-      <SubmitButton onClick={handleSubmit}>
+      <SubmitButton
+        disabled={buttonMessage !== INITIAL_MESSAGE}
+        onClick={handleSubmit}
+      >
         {buttonMessage}
       </SubmitButton>
     </Form>

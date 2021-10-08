@@ -6,6 +6,8 @@ import {
 
 import { queries } from '@utils/rwd';
 
+/* stylelint-disable no-descending-specificity */
+
 export const Wrapper = styled.footer`
   margin-top: ${({ noMargin }) => (noMargin ? 0 : '5em')};
   padding-top: 2.5em;
@@ -97,8 +99,20 @@ export const SubmitButton = styled.button`
   color: inherit;
   cursor: pointer;
 
+  :disabled {
+    background-color: ${({ theme: { colors } }) => colors.sub};
+    color: ${({ theme: { colors } }) => colors.border};
+    cursor: not-allowed
+  }
+
   ::after {
     bottom: 0;
+  }
+
+  :disabled:hover {
+    ::after {
+      content: unset;
+    }
   }
 `;
 
