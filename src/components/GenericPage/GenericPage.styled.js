@@ -18,7 +18,8 @@ export const Main = styled.main`
 
 export const Header = styled.header`
   position: relative;
-  height: 67vh;
+  height: 37.96875vw;
+  margin-top: 10vw;
   color: ${({
     isWhite, theme,
   }) => (isWhite ? theme.colors.sub : theme.colors.main)};
@@ -40,6 +41,26 @@ export const Header = styled.header`
         font-size: ${({ theme: { fonts: { sizes } } }) => sizes.huge};
       }
     }
+  }
+
+  @media ${queries.huge} {
+    margin-top: 11vw;
+  }
+
+  @media ${queries.xxl} {
+    margin-top: 13vw;
+  }
+
+  @media ${queries.xl} {
+    margin-top: 14vw;
+  }
+
+  @media ${queries.l} {
+    margin-top: 16vw;
+  }
+
+  @media ${queries.m} {
+    margin-top: 6rem;
   }
 `;
 
