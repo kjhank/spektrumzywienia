@@ -12,7 +12,6 @@ export const Header = styled.header`
   right: 0;
   left: 0;
   z-index: 2;
-  box-shadow: ${({ theme }) => theme.getShadow()};
   padding: ${({ isScrolled }) => (isScrolled ? '0.5em 0' : '2em 0;')};
   background-color: ${({ isScrolled }) => (isScrolled ? rgba('#fff', 0.9) : rgba('#fff', 0.5))};
   color: #000;
