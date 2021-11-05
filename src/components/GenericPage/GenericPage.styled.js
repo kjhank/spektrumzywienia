@@ -38,7 +38,11 @@ export const Header = styled.header`
 
     @media ${queries.xs} {
       > h1 {
-        font-size: ${({ theme: { fonts: { sizes } } }) => sizes.huge};
+        font-size: ${({ theme: { fonts: { sizes } } }) => sizes.xxlarge};
+      }
+
+      > h2 {
+        font-size: ${({ theme: { fonts: { sizes } } }) => sizes.large};
       }
     }
   }
