@@ -27,10 +27,10 @@ export const ContactForm = ({
   const [
     formData,
     setFormData,
-  ] = useState(fields.reduce((acc, curr) => ({
+  ] = useState(fields?.reduce((acc, curr) => ({
     ...acc,
     [curr]: '',
-  }), {}));
+  }), {}) || {});
 
   const [
     buttonMessage,

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  ArticleBody, Cover, Header, Main,
+  ArticleBody, Cover, CoverAuthor, Header, Main,
 } from '@genericPage/GenericPage.styled';
 import {
   Container, Typography,
@@ -18,6 +18,8 @@ const GenericPage = ({
   pageContext: {
     blogPosts,
     cover,
+    coverAuthor,
+    coverHasAuthor,
     files,
     hasFiles,
     hasPosts,
@@ -50,6 +52,13 @@ const GenericPage = ({
           size="xlarge"
         >
           {subHeading}
+          {coverHasAuthor && (
+          <CoverAuthor>
+            autor zdjęcia:
+            {' '}
+            {coverAuthor}
+          </CoverAuthor>
+          )}
         </Typography>
       </Container>
     </Header>
@@ -72,6 +81,8 @@ GenericPage.propTypes = {
   pageContext: PropTypes.shape({
     blogPosts: PropTypes.arrayOf(PropTypes.shape({})),
     cover: PropTypes.shape({}),
+    coverAuthor: PropTypes.string,
+    coverHasAuthor: PropTypes.bool,
     files: PropTypes.arrayOf(PropTypes.shape({})),
     hasFiles: PropTypes.bool,
     hasPosts: PropTypes.bool,

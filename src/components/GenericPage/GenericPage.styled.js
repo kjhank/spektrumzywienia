@@ -99,6 +99,18 @@ export const Cover = styled(WPImage)`
   }
 `;
 
+export const CoverAuthor = styled.p`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 0.5em 0.5em 0 0;
+  padding: 0.5em 1em;
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(5px);
+  color: inherit;
+  font-size: ${({ theme: { fonts: { sizes } } }) => sizes.xsmall};
+`;
+
 export const ArticleBody = styled.article`
   margin-top: 5em;
 

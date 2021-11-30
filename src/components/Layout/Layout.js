@@ -96,8 +96,8 @@ const Layout = ({
       {children}
       <GlobalFooter
         data={footerData}
-        formFields={options.formFields}
-        formId={options['contact-form'][0].ID}
+        formFields={options?.formFields}
+        // formId={options['contact-form'][0].ID}
         noHeading={path === '/kontakt'}
         noMargin={path === '/kontakt'}
       />
