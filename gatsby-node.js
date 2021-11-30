@@ -80,6 +80,8 @@ exports.createPages = async ({
 
     const global = {
       cover: acf.cover,
+      coverAuthor: acf.cover_author,
+      coverHasAuthor: acf.cover_has_author,
       isCoverBlurred: acf.is_cover_blurred,
       isCoverDarkened: acf.is_cover_darkened,
       isHeaderWhite: acf.is_white,
