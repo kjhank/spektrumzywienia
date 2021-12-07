@@ -5,10 +5,9 @@ const htmlAttributes = {
   lang: 'pl-PL',
 };
 
-const globalTitle = 'Spektrum Żywienia';
-
 export const renderMetaData = metadata => {
-  const title = metadata.title ? `${metadata.title} - ${globalTitle}` : globalTitle;
+  const { siteName } = metadata;
+  const title = metadata.title ? `${metadata.title} - ${siteName}` : siteName;
 
   return (
     <Helmet htmlAttributes={htmlAttributes}>

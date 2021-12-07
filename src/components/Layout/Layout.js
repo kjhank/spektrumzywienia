@@ -85,7 +85,7 @@ const Layout = ({
     <Theme>
       {renderMetaData(({
         ...metadata,
-        canonicalUrl: location.href,
+        canonicalUrl: `https//spektrumzywienia.pl${location.pathname}`,
       }))}
       <GlobalStyle shouldScroll={!isCookiesModalOpen} />
       <FixedHeader
@@ -112,7 +112,7 @@ Layout.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
   ]).isRequired,
   location: PropTypes.shape({
-    href: PropTypes.string,
+    pathname: PropTypes.string,
   }).isRequired,
   pageContext: PropTypes.shape({
     metadata: PropTypes.shape({}),
