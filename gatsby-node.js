@@ -46,6 +46,11 @@ exports.createPages = async ({
     posts,
   ] = await getApiData(endpoints);
 
+  const globalData = await fetch(`${process.env.BACKEND_URL}`);
+  const globalDataJson = await globalData.json();
+
+  const { name: siteName } = globalDataJson;
+
   const getTemplate = ({
     slug, type,
   }) => {
@@ -88,6 +93,7 @@ exports.createPages = async ({
       metadata: {
         description: acf.description,
         openGraph: acf.openGraph,
+        siteName,
         title,
       },
       subHeading: acf.subheading,
@@ -161,6 +167,7 @@ exports.createPages = async ({
           .map(item => item.split('* ')[1]),
         ...options?.acf,
       },
+      siteName,
       title: title?.rendered,
       ...getContext(page),
     };
