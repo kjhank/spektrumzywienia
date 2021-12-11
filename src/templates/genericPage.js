@@ -65,8 +65,8 @@ const GenericPage = ({
     <ArticleBody>
       {hasPosts && (
         <BlogPosts
+          $hasSmallerFont
           columns={3}
-          hasSmallerFont
           posts={blogPosts}
         />
       )}

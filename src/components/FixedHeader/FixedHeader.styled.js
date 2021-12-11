@@ -124,6 +124,7 @@ export const Logo = styled(WPImage)`
   height: 100%;
 
   > img {
+    width: auto;
     height: 100%;
   }
 `;

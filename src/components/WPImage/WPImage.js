@@ -17,8 +17,10 @@ export const WPImage = ({
     {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
     <img
       alt={image?.alt}
+      height={image.height}
       loading={isLazy ? 'lazy' : 'eager'}
       src={image?.url}
+      width={image.width}
     />
   </picture>
 
@@ -27,8 +29,10 @@ export const WPImage = ({
 WPImage.propTypes = {
   image: PropTypes.shape({
     alt: PropTypes.string,
+    height: PropTypes.number,
     subtype: PropTypes.string,
     url: PropTypes.string,
+    width: PropTypes.number,
   }).isRequired,
   isLazy: PropTypes.bool,
 };

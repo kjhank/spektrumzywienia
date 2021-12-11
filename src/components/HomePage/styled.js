@@ -283,8 +283,8 @@ export const PostLink = styled(Link)`
   width: 100%;
   height: 100%;
   font-size: ${({
-    hasSmallerFont, theme: { fonts: { sizes } },
-  }) => (hasSmallerFont ? sizes.large : sizes.xxlarge)};
+    $hasSmallerFont, theme: { fonts: { sizes } },
+  }) => ($hasSmallerFont ? sizes.large : sizes.xxlarge)};
   text-align: center;
 
   :hover {
@@ -300,7 +300,7 @@ export const PostLink = styled(Link)`
 
   @media ${queries.m} {
   font-size: ${({
-    hasSmallerFont, theme: { fonts: { sizes } },
-  }) => (hasSmallerFont ? sizes.medium : sizes.xlarge)};
+    $hasSmallerFont, theme: { fonts: { sizes } },
+  }) => ($hasSmallerFont ? sizes.medium : sizes.xlarge)};
   }
 `;

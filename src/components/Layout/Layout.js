@@ -17,12 +17,13 @@ import {
 } from '@components';
 
 import '../../../static/fonts/stylesheet.css';
-import { renderMetaData } from './helpers';
+
+import { SEO } from './SEO';
 
 const COOKIES_LS_KEY = 'cookies-agreed';
 
 const Layout = ({
-  children, location, pageContext, path,
+  children, pageContext, path,
 }) => {
   const {
     metadata, options,
@@ -83,10 +84,11 @@ const Layout = ({
 
   return (
     <Theme>
-      {renderMetaData(({
-        ...metadata,
-        canonicalUrl: `https//spektrumzywienia.pl${location.pathname}`,
-      }))}
+      <SEO
+        metadata={metadata}
+        path={path}
+        siteUrl="https//spektrumzywienia.pl"
+      />
       <GlobalStyle shouldScroll={!isCookiesModalOpen} />
       <FixedHeader
         data={contactLinks}
@@ -97,7 +99,7 @@ const Layout = ({
       <GlobalFooter
         data={footerData}
         formFields={options?.formFields}
-        // formId={options['contact-form'][0].ID}
+        formId={options['contact-form'][0].ID}
         noHeading={path === '/kontakt'}
         noMargin={path === '/kontakt'}
       />
