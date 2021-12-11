@@ -159,7 +159,9 @@ const GlobalStyle = createGlobalStyle`
 
   img {
     display: block;
+    width: auto;
     max-width: 100%;
+    height: auto;
   }
 
   input,

@@ -121,6 +121,7 @@ export const renderHomePage = sections => sections.map(section => {
 
       return (
         <BlogPosts
+          key={key}
           posts={blogPosts}
           title={title}
         />

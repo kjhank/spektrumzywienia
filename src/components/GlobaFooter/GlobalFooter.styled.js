@@ -179,6 +179,7 @@ export const Avatar = styled(WPImage)`
   margin-bottom: 1em;
 
   > img {
+    height: auto;
     box-shadow: ${({ theme }) => theme.getShadow()};
     border-radius: 50%;
   }

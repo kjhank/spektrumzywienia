@@ -7,7 +7,7 @@ import {
 } from './styled';
 
 export const BlogPosts = ({
-  columns, hasSmallerFont, posts, title,
+  columns, $hasSmallerFont, posts, title,
 }) => (
   <BlogPostsSection>
     <PostsContainer>
@@ -33,7 +33,7 @@ export const BlogPosts = ({
           return (
             <SinglePost key={postTitle}>
               <PostLink
-                hasSmallerFont={hasSmallerFont}
+                $hasSmallerFont={$hasSmallerFont}
                 to={url}
               >
                 <BlogPostImage image={cover} />
@@ -48,14 +48,14 @@ export const BlogPosts = ({
 );
 
 BlogPosts.propTypes = {
+  $hasSmallerFont: PropTypes.bool,
   columns: PropTypes.number,
-  hasSmallerFont: PropTypes.bool,
   posts: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   title: PropTypes.string,
 };
 
 BlogPosts.defaultProps = {
+  $hasSmallerFont: false,
   columns: 2,
-  hasSmallerFont: false,
   title: null,
 };

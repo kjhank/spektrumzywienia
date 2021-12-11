@@ -79,7 +79,7 @@ exports.createPages = async ({
 
   const getContext = page => {
     const {
-      acf, slug, type,
+      acf, slug, type, yoast_head_json,
     } = page;
     const title = acf.has_alt_heading ? acf.alt_title : page.title.rendered;
 
@@ -92,9 +92,9 @@ exports.createPages = async ({
       isHeaderWhite: acf.is_white,
       metadata: {
         description: acf.description,
-        openGraph: acf.openGraph,
         siteName,
         title,
+        yoast: yoast_head_json,
       },
       subHeading: acf.subheading,
       title,
