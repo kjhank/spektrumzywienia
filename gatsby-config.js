@@ -45,13 +45,13 @@ module.exports = {
     },
     {
       options: {
-        background_color: '#663399',
+        background_color: '#ffcc00',
         display: 'minimal-ui',
         icon: 'src/images/logo.png', // This path is relative to the root of the site.
         name: 'Untitled Gatsby project',
         short_name: 'foo',
         start_url: '/',
-        theme_color: '#663399', // TODO: set these up
+        theme_color: '#ffcc00', // TODO: set these up
       },
       resolve: 'gatsby-plugin-manifest',
     },
@@ -62,9 +62,6 @@ module.exports = {
       resolve: 'gatsby-plugin-google-tagmanager',
     },
     'gatsby-plugin-styled-components',
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.app/offline
-    // 'gatsby-plugin-offline',
   ],
   siteMetadata: {
     author: '@kjhank',
