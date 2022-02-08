@@ -1,3 +1,7 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
   flags: {
     THE_FLAG: false,
@@ -50,6 +54,12 @@ module.exports = {
         theme_color: '#663399', // TODO: set these up
       },
       resolve: 'gatsby-plugin-manifest',
+    },
+    {
+      options: {
+        id: process.env.GTM_ID,
+      },
+      resolve: 'gatsby-plugin-google-tagmanager',
     },
     'gatsby-plugin-styled-components',
     // this (optional) plugin enables Progressive Web App + Offline functionality
